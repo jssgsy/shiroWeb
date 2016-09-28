@@ -10,7 +10,10 @@
         <param-value>classpath:shiro.ini</param-value>
     </context-param>
 
-    <!--shiro1.2及以后版本集成web的方法-->
+    <!--1. shiro1.2及以后版本集成web的方法
+        2. SecurityManager由EnvironmentLoaderListener创建,会被ShiroFilter发现且注入
+        3. EnvironmentLoaderListener来创建相应的WebEnvironment，并自动绑定到ServletContext，默认使用IniWebEnvironment实现
+    -->
     <listener>
         <listener-class>org.apache.shiro.web.env.EnvironmentLoaderListener</listener-class>
     </listener>
@@ -28,5 +31,5 @@
         <dispatcher>INCLUDE</dispatcher>
         <dispatcher>ERROR</dispatcher>
     </filter-mapping>
-    
+
 </web-app>
